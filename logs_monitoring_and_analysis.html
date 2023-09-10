@@ -120,21 +120,64 @@
 							</header>
 							<span class="image featured"><img src="images\Logs Monitoring and Analysis\1.png" alt="" width="10" height="900" /></span>
 							<p>I jumped headfirst into creating a secure web application. Here's a breakdown:</p>
+							<ul>
+								<li>Front-end crafting with HTML, CSS, and JavaScript</li>
+								<li>Backend backbone with Python and Flask</li>
+								<li>Scaling with AWS Elastic Beanstalk</li>
+								<li>Security with Auth0</li>
+								<li>Event-driven efficiency with AWS Eventbridge</li>
+								<li>Monitoring and analysis with AWS CloudWatch and SageMaker</li>
+							</ul>
+							<!-- <span class="image featured"><img src="images\Logs Monitoring and Analysis\2.png" alt="" width="10" height="900" /></span> -->
+
 
 							<h3>Front-end Crafting</h3>
-							<p>First things first, I got creative with the user interface. Using Vanilla HTML, CSS, and JavaScript, I ensured a smooth user experience. Login and sign-up features were essential components.</p>
+							<p>First things first, I got creative with the user interface. Using Vanilla HTML, CSS, and JavaScript, I ensured a smooth user experience. 
+								Login and sign-up features were essential components.</p>
 
 							<h3>The Backend Backbone</h3>
-							<p>The backend was where the real magic happened. Python and Flask were my go-to tools to guarantee secure data transmission between the front end and backend. Flask's flexibility streamlined routing and request handling.</p>
-
-							<h3>Fortifying Security with Auth0</h3>
-							<p>Security was a top priority. So, I seamlessly integrated Auth0, a powerful authentication and authorization platform. Role-based access control ensured that only authorized users could access specific parts of the application, keeping cyber threats at bay.</p>
+							<p>The backend was where the real magic happened. Python and Flask were my go-to tools to guarantee secure data transmission between the front 
+								end and backend. Flask's flexibility streamlined routing and request handling.</p>
 
 							<h3>AWS for Scaling</h3>
-							<p>To keep things scalable and cost-effective, I turned to <a href="#">Amazon Web Services (AWS) Elastic Beanstalk</a> for deployment. This platform simplified deployment and resource management, leaving me to focus on development.</p>
+							<p>To keep things scalable and cost-effective, I turned to <a href="https://aws.amazon.com/elasticbeanstalk/">Amazon Web Services (AWS) 
+								Elastic Beanstalk</a> for deployment. This platform simplified deployment and resource management, leaving me to focus on development.</p>
 
+
+							<h3>Fortifying Security with Auth0</h3>
+							<p>Security was a top priority. So, I seamlessly integrated Auth0, a powerful authentication and authorization platform.Auth0 helped
+								securing the website from malicious attack like "DDOS" and "SQL Injection". Auth0 was basic heart of the application as the main focus of the 
+								project was to create an application that logs various activities and updates the users and admin about various type of attacks using services 
+								like AWS SNS. Auth0 can also used for role-based access control ensured that only authorized users could access specific parts of the 
+								application, keeping cyber threats at bay. </p>
+
+						
 							<h3>Event-Driven Efficiency</h3>
-							<p><a href="#">AWS Eventbridge</a> played a crucial role in enabling real-time communication between the application and <a href="#">AWS Lambda</a>. Lambda, a serverless computing service, handled incoming logs and triggered actions without the complexities of infrastructure management.</p>
+							<p><a href="https://aws.amazon.com/eventbridge/">AWS Eventbridge</a> played a crucial role in enabling real-time communication between 
+								the application's log stream from Auth0 dashboard to AWS account, setting up a event bus and triggered on every new event in the application
+								like (login, login failure, change of the password, different type of attacks) andd forwarding the log stram to 
+								<a href="https://aws.amazon.com/lambda/">AWS Lambda</a>. Lambda, a serverless computing service, handled incoming logs and triggered actions 
+								without the complexities of infrastructure management. AWS Lambda did a custom querring and stored the incoming values into AWS RDS and also 
+							forwarded the log message to the admin based to the type of error using AWS SNS publish-subscriber model. </p>
+
+							<h3>Monitoring and Analysis</h3>
+							<p>With the logs stored in AWS RDS, I used <a href="https://aws.amazon.com/cloudwatch/">AWS CloudWatch</a> to monitor and manage AWS resources. 
+								CloudWatch's real-time monitoring and alerting capabilities were invaluable. I also used <a href="https://aws.amazon.com/sagemaker/">AWS 
+								SageMaker</a> to explore machine learning models for clustering and anomaly detection. 
+								The results were visualized using <a href="https://public.tableau.com/app/discover">Tableau</a>, 
+								providing insights for future steps.</p>
+							
+							<h3>Lessons Learned</h3>
+							<p>My project journey was a learning experience. Here are some key takeaways:</p> 
+							<ul>
+								<li>Auth0 is a powerful tool for authentication and authorization, ensuring robust security.</li>
+								<li>Event-driven architecture is a great way to ensure real-time communication between applications.</li>
+								<li>Serverless computing is a cost-effective way to manage resources.</li>
+								<li>Machine learning models can be used for clustering and anomaly detection.</li>
+								<li>Tableau is a great tool for visualizing machine learning results.</li>
+							</ul>
+
+
 
 							<h3>Essential Tools and Services</h3>
 							<p>Here are some tools and services that played a vital role:</p>
@@ -144,7 +187,8 @@
 								<li><a href="https://aws.amazon.com/elasticbeanstalk/">AWS Elastic Beanstalk</a>: It simplified app deployment and resource management.</li>
 								<li><a href="https://aws.amazon.com/eventbridge/">AWS Eventbridge</a>: Real-time communication between the app and <a href="#">AWS Lambda</a>? Check!</li>
 								<li><a href="https://aws.amazon.com/lambda/">AWS Lambda</a>: Serverless computing at its best, managing logs and actions effortlessly.</li>
-								<li><a href="https://aws.amazon.com/sns/">AWS Simple Notification Service (SNS)</a>: Distributing notifications through various channels was a breeze.</li>
+								<li><a href="https://aws.amazon.com/sns/">AWS Simple Notification Service (SNS)</a>: Distributing notifications through various 
+									channels was a breeze.</li>
 								<li><a href="https://aws.amazon.com/rds/">AWS Relational Database Service (RDS)</a>: It ensured data integrity, security, and scalability.</li>
 								<li><a href="https://aws.amazon.com/sdk-for-python/">AWS Boto3</a>: This Python SDK simplified interaction with AWS resources, automating tasks seamlessly.</li>
 								<li><a href="https://aws.amazon.com/cloudwatch/">AWS CloudWatch</a>: Monitoring and managing AWS resources was a breeze.</li>
@@ -153,9 +197,15 @@
 							</ul>
 
 							<h3>The Road Ahead and Conclusion</h3>
-							<p>With the project's success, new doors have opened. My vision includes integrating machine learning models for real-time anomaly detection in incoming logs. This could take security to the next level, ensuring quick notifications for unusual activities.</p>
+							<p>With the project's success, new doors have opened. My vision includes integrating machine learning models for real-time anomaly detection 
+								in incoming logs. This could take security to the next level, ensuring quick notifications for unusual activities.</p>
 
-							<p>In conclusion, my project journey allowed me to find that sweet spot between innovation and security. Building a secure web app with Auth0 and AWS underscored the importance of robust security measures in today's applications. It expanded my technical skills and sparked my interest in the potential of machine learning in security. The collaborative experiences and self-guided learning were invaluable, enhancing my problem-solving abilities and broadening my horizons. As I move forward, I carry the invaluable experiences from this project with me.</p>
+							<p>In conclusion, my project journey allowed me to find that sweet spot between innovation and security. Building a secure web app with 
+								Auth0 and AWS underscored the importance of robust security measures in today's applications. It expanded my technical skills and 
+								sparked my interest in the potential of machine learning in security. The collaborative experiences and self-guided learning were 
+								invaluable, enhancing my problem-solving abilities and broadening my horizons. As I move forward, I carry the invaluable 
+								experiences from this project with me.</p>
+								
 						</article>
 
 
