@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Flask Todo App</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-32K670Y09E"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-32K670Y09E');
+	</script>
+	<body class="single is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<header id="header">
+					<h1><a href="index.html">Achal Vats</a></h1>
+					<nav class="links">
+						<ul>
+							<!-- <li><a href="https://1drv.ms/b/s!AuoAPgPgtiHurhbT2YMK3X8CaCkV">Resume</a></li> -->
+							<li><a href="https://www.linkedin.com/in/achal-vats-886189100/">LinkedIN</a></li>
+							<li><a href="https://github.com/achalvats">Github</a></li>
+							<li><a href="https://leetcode.com/achalvats/">Leetcode</a></li>
+							<li><a href="#https://public.tableau.com/app/profile/achal.vats">Tableau Public</a></li>
+							<li><a href="#https://https://achalvats.github.io/">Blog (Coming Soon)</a></li>
+							<!-- <li><a href="#">Kaggle/a></li>							 -->
+						</ul>
+						<!-- </nav>
+						<nav class="main">
+							<ul>
+								<li class="search">
+									<a class="fa-search" href="#search">Search</a>
+									<form id="search" method="get" action="#">
+										<input type="text" name="query" placeholder="Search" />
+									</form>
+								</li>
+								<li class="menu">
+									<a class="fa-bars" href="#menu">Menu</a>
+								</li>
+							</ul>
+						</nav> -->
+					</header>
+
+				<!-- Menu -->
+					<section id="menu">
+
+						<!-- Search -->
+							<section>
+								<form class="search" method="get" action="#">
+									<input type="text" name="query" placeholder="Search" />
+								</form>
+							</section>
+
+						<!-- Links -->
+							<!-- <section>
+								<ul class="links">
+									<li>
+										<a href="#">
+											<h3>Lorem ipsum</h3>
+											<p>Feugiat tempus veroeros dolor</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Dolor sit amet</h3>
+											<p>Sed vitae justo condimentum</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Feugiat veroeros</h3>
+											<p>Phasellus sed ultricies mi congue</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Etiam sed consequat</h3>
+											<p>Porta lectus amet ultricies</p>
+										</a>
+									</li>
+								</ul>
+							</section> -->
+
+						<!-- Actions -->
+							<section>
+								<ul class="actions stacked">
+									<li><a href="#" class="button large fit">Log In</a></li>
+								</ul>
+							</section>
+
+					</section>
+
+				<!-- Main -->
+<div id="main">
+
+    <!-- Post -->
+    <article class="post">
+        <header>
+            <div class="title">
+                <h2>Building a Flask Todo App: A Deep Dive into Architecture and Components</h2>
+            </div>
+			<div class="meta">
+				<time class="published" datetime="January 14, 2024">January 14, 2024</time>
+				<a href="#" class="author"><span class="name">Achal Vats</span><img src="images/logo.jpg" alt="" /></a>
+			</div>
+		</header>
+		<span class="image featured"><img src="images\flask todo app\architecture diagram.png" alt="" width="10" height="900" /></span>
+		
+		<h2>Introduction</h2>
+        <p>In the realm of web development, Flask stands out as a lightweight and powerful framework for building web applications with Python. In this article, we'll delve into a practical example - a "Todo App" built using Flask. We'll explore the architecture, dissect the components, and understand how the various pieces come together to create a functional and scalable web application.</p>
+
+        <h2>Project Overview</h2>
+
+        <p>The Todo App is a simple yet effective task management system. Users can add, delete, and update tasks, providing a basic but essential example of web application functionality.</p>
+
+        <h3>Project Structure</h3>
+
+        <p>The project structure is divided into two main parts: the frontend, which encompasses the user interface (UI) presented in the web browser, and the backend, where the Flask application handles data management, storage, and business logic.</p>
+
+        <h2>Frontend Components</h2>
+
+        <h3>User Interface (Web Browser)</h3>
+
+        <p>The user interacts with the application through a web browser. The frontend is responsible for presenting the tasks, receiving user input, and displaying the results. Users access the web application via the <a href="https://todo-master-dgse.onrender.com/">Render hosting platform</a>.</p>
+
+        <h3>HTML, CSS, and JavaScript (Static Files)</h3>
+
+        <p>Static files, including HTML, CSS, and JavaScript, are served to the user's browser by the web server. These files define the structure, style, and behavior of the Todo App's user interface.</p>
+
+        <h3>Flask Templates (HTML)</h3>
+
+        <p>Flask renders dynamic content using HTML templates. The templates, such as "index.html" for displaying tasks and "update.html" for updating tasks, provide a way to structure and present data to users.</p>
+
+        <h2>Backend Components</h2>
+
+        <h3>Flask App (app.py)</h3>
+
+        <p>The core of the Todo App is the Flask application, defined in the `app.py` script. Let's break down the key components and functionalities within this script.</p>
+
+        <h4>Flask Initialization</h4>
+
+        <pre><code>from flask import Flask, render_template, url_for, request, redirect
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todo_db.db'
+db = SQLAlchemy(app)</code></pre>
+
+		<p> <u>Flask Initialization:</u> The Flask app is created, and SQLAlchemy is configured to use an SQLite database named todo_db.db. SQLAlchemy is an Object-Relational Mapping (ORM) library that facilitates database interactions.</p>
+
+        <h4>Todo Model</h4>
+
+        <pre><code>class Todo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String(200), nullable=False)
+    completed = db.Column(db.Integer, default=0)
+    data_created = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self) -&gt; str:
+        return '&lt;Task %r&gt;' % self.id</code></pre>
+
+		<p> <u>Todo Model:</u> The Todo class represents the structure of the "Todo" table in the database. It includes fields like id, content, completed, and data_created.</p>
+
+        <h4>Routes and Views</h4>
+
+        <pre><code>@app.route('/', methods=['POST', 'GET'])
+def index():
+    # ... (Handling task creation and retrieval)
+
+@app.route('/delete/<int:id>')
+def delete(id):
+    # ... (Handling task deletion)
+
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
+def update(id):
+    # ... (Handling task updating)</code></pre>
+
+		<p> <u>Routes and Views:</u> The Flask app defines three routes - `/`, `/delete/<int:id>`, and `/update/<int:id>`. These routes handle task creation, deletion, and updating, respectively.</p>
+
+        <h4>Database Operations</h4>
+
+        <pre><code># ... (Database operations within route functions)</code></pre>
+
+		<p><u>Database Operations:</u> Within the route functions, database operations are performed using SQLAlchemy. Tasks are added, deleted, and updated within try-except blocks to catch and handle potential errors.</p>
+
+        <h4>Running the App</h4>
+
+        <pre><code>if __name__ == '__main__':
+    app.run(debug=True)</code></pre>
+
+		<p><u>Running the App:</u> The app is configured to run in debug mode, which provides additional information for development purposes. In a production environment, this would be replaced with a more robust server setup.</p>
+
+        <h2>Production Deployment Considerations</h2>
+		<span class="image featured"><img src="images\flask todo app\architecture diagram.png" alt="" width="5" height="700" /></span>
+
+        <p>While the provided `app.py` is suitable for development, deploying it in a production environment requires additional considerations. In production, it's common to use a dedicated web server (e.g., Nginx or Apache) in conjunction with a WSGI server (e.g., Gunicorn or uWSGI).</p>
+
+        <h3>Nginx/Apache as a Reverse Proxy</h3>
+
+        <p>A production-ready web server, such as Nginx or Apache, acts as a reverse proxy. It forwards incoming HTTP requests to the WSGI server running the Flask application.</p>
+
+        <h3>Gunicorn/uWSGI as the WSGI Server</h3>
+
+        <p>A WSGI server handles the communication between the web server and the Flask application. Gunicorn and uWSGI are popular choices. For example, using Gunicorn:</p>
+
+        <pre><code>gunicorn -w 4 -b 0.0.0.0:5000 app:app</code></pre>
+
+        <p>This command runs the Flask app with 4 worker processes, binding to all available network interfaces.</p>
+
+        <h2>Conclusion</h2>
+
+        <p>In this deep dive, we've explored the architecture and components of a Flask Todo App. From the frontend user interface to the backend Flask application and database interactions, each piece plays a crucial role in creating a fully functional web application. Understanding these components is essential for developing robust and scalable web applications using Flask.</p>
+
+        <p>As you continue your journey in web development, consider enhancing the Todo App with additional features, security measures, and optimizations to further strengthen your skills in building real-world applications.</p>
+
+
+		    <!-- Add the two buttons below the concluding paragraph -->
+			<div style="text-align: center; margin-top: 20px;">
+				<a href="https://github.com/achalvats/TaskMaster_TodoApp" class="button large rounded" style="background-color: #D2B48C;">GitHub Source Code</a>
+				<a href="https://todo-master-dgse.onrender.com/" class="button large rounded" style="background-color: #D2B48C;">Deployed Project on Render</a>
+
+			</div>
+    </article>
+
+
+</div>
+
+
+
+				<!-- Footer -->
+				<section id="footer">
+					<ul class="icons">
+						<li><a href="https://www.linkedin.com/in/achal-vats-886189100/" class="icon brands fa-linkedin"><span class="label">Twitter</span></a></li>
+						<li><a href="https://github.com/achalvats" class="icon brands fa-github"><span class="label">Facebook</span></a></li>
+						<!-- <li><a href="#" class="icon brands fa-kaggle"><span class="label">Instagram</span></a></li> -->
+						<!-- <li><a href="#" class="icon solid fa-tableau"><span class="label">RSS</span></a></li> -->
+						<!-- <li><a href="https://leetcode.com/achalvats/" class="cib-leetcode"><img src="https://coreui.io/icons/brand/leetcode.svg" alt="LeetCode" width="16" height="16"> <span class="label">RSS</span></a></li> -->
+						<li><a href="achalvats@hotmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<!-- <p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p> -->
+				</section>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+
+
+
+	</body>
+</html>
